@@ -49,7 +49,7 @@ fun CountingComponent(
     incrementCount: () -> Unit,
 ) {
     Div {
-        Text("ComponentB Clicked: ${counter.count}")
+        Text("Component Clicked: ${counter.count}")
     }
 
     Button(
