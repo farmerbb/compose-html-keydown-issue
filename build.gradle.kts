@@ -1,9 +1,8 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 repositories {
@@ -23,19 +22,9 @@ kotlin {
             resources.srcDir("src/main/resources")
 
             dependencies {
-                implementation(compose.html.core)
-                implementation(compose.runtime)
+                implementation("org.jetbrains.compose.html:html-core:${extra["compose.version"] as String}")
+                implementation("org.jetbrains.compose.runtime:runtime:${extra["compose.version"] as String}")
             }
         }
     }
 }
-
-// a temporary workaround for a bug in jsRun invocation - see https://youtrack.jetbrains.com/issue/KT-48273
-afterEvaluate {
-    rootProject.extensions.configure<NodeJsRootExtension> {
-        nodeVersion = "16.0.0"
-        versions.webpackDevServer.version = "4.0.0"
-        versions.webpackCli.version = "4.10.0"
-    }
-}
-
