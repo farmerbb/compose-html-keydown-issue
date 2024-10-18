@@ -13,8 +13,8 @@ fun main() {
 }
 
 @Immutable
-data class Counter(var count: Int) {
-    fun increment(): Counter = copy(count + 1)
+class Counter(var count: Int) {
+    fun increment(): Counter = Counter(count + 1)
 }
 
 @Composable
