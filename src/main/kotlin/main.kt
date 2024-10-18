@@ -19,18 +19,14 @@ data class Counter(var count: Int) {
 
 @Composable
 fun Body() {
-    var counter: Counter by remember { mutableStateOf(Counter(0)) }
-    CountingScreen(
-        counter = counter,
-        onCounterChanged = { newCounter -> counter = newCounter }
-    )
+    CountingScreen()
 }
 
 @Composable
-fun CountingScreen(
-    counter: Counter,
-    onCounterChanged: (Counter) -> Unit,
-) {
+fun CountingScreen() {
+    var counter: Counter by remember { mutableStateOf(Counter(0)) }
+    val onCounterChanged = { newCounter: Counter -> counter = newCounter }
+
     Div { Text("Clicked: $counter") }
 
     fun incCounter() {
